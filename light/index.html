@@ -24,16 +24,27 @@
     .clear-interval {
       margin-top: 5px;
     }
+    .green {
+      background-color: green;
+    }
+    .red {
+      background-color: red;
+    }
+    .yellow {
+      background-color: yellow;
+    }
   </style>
 </head>
 <body>
   <div class="app">
-    <div class="light" style="background-color: green;"></div>
+    <div class="light green"></div>
     <div class="light"></div>
     <div class="light"></div>
   </div>
-  <script src="./index.js"></script>
+  <!-- <script src="./index.js"></script> -->
   <!-- <script src='../node_modules/javascript-state-machine/dist/state-machine.js'></script>
-  <script src="./state-machine-index.js"></script> -->
+  <script src="./javascript-state-machine.js"></script> -->
+  <script src="../node_modules/xstate/dist/xstate.js"></script>
+  <script src="./xstate.js"></script>
 </body>
 </html>

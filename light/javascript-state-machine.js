@@ -1,26 +1,26 @@
 const lightDom = document.querySelectorAll('.light')
 const lightMap = {
   green: lightDom[0],
-  red: lightDom[1],
-  yellow: lightDom[2]
+  yellow: lightDom[1],
+  red: lightDom[2]
 }
 
 const lightFsm = new StateMachine({
   init: 'green',
   transitions: [
-    { name: 'switchLight', from: 'green', to: 'red' },
-    { name: 'switchLight', from: 'red', to: 'yellow' },
-    { name: 'switchLight', from: 'yellow', to: 'green' },
+    { name: 'switchLight', from: 'green', to: 'yellow' },
+    { name: 'switchLight', from: 'red', to: 'green' },
+    { name: 'switchLight', from: 'yellow', to: 'red' },
   ],
   methods: {
     onSwitchLight: (lifecycle) => {
       const { from, to } = lifecycle
-      lightMap[from].style.backgroundColor = ''
-      lightMap[to].style.backgroundColor = to
+      lightMap[from].classList.remove(from)
+      lightMap[to].classList.add(to)
     }
   }
 });
 
 setInterval(() => {
   lightFsm.switchLight()
-}, 3000)
+}, 1000)

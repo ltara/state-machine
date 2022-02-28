@@ -1,8 +1,8 @@
 const lightDom = document.querySelectorAll('.light')
 const lightMap = {
   green: lightDom[0],
-  red: lightDom[1],
-  yellow: lightDom[2]
+  yellow: lightDom[1],
+  red: lightDom[2]
 }
 
 class Light {
@@ -12,23 +12,23 @@ class Light {
   init() {
     setInterval(() => {
       this.switchLight(this.state)
-    }, 3000)
+    }, 1000)
   }
   switchLight(state) {
     if (state === 'green') {
-      this.state = 'red'
-      lightMap['green'].style.backgroundColor = ''
-      lightMap['red'].style.backgroundColor = 'red'
-    }
-    if (state === 'red'){
       this.state = 'yellow'
-      lightMap['red'].style.backgroundColor = ''
-      lightMap['yellow'].style.backgroundColor = 'yellow'
+      lightMap['green'].classList.remove('green')
+      lightMap['yellow'].classList.add('yellow')
     }
     if (state === 'yellow') {
+      this.state = 'red'
+      lightMap['yellow'].classList.remove('yellow')
+      lightMap['red'].classList.add('red')
+    }
+    if (state === 'red'){
       this.state = 'green'
-      lightMap['yellow'].style.backgroundColor = ''
-      lightMap['green'].style.backgroundColor = 'green'
+      lightMap['red'].classList.remove('red')
+      lightMap['green'].classList.add('green')
     }
   }
 }
