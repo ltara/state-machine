@@ -14,7 +14,9 @@ const lightMachine = createMachine(
     states: {
       green: {
         on: {
-          TIMER: 'yellow'
+          TIMER: {
+            target: 'yellow'
+          }
         }
       },
       yellow: {
@@ -32,6 +34,7 @@ const lightMachine = createMachine(
 )
 
 const lightService = interpret(lightMachine).onTransition((state) => {
+  console.log(state.value)
   if (state.event.type !== 'xstate.init') {
     lightMap[state.history.value].classList.remove(state.history.value)
     lightMap[state.value].classList.add(state.value)
@@ -44,7 +47,7 @@ lightService.start()
 // 发送事件
 setInterval(() => {
   lightService.send('TIMER')
-}, 1000)
+}, 2000)
 
 // 批量发送事件
 // lightService.send(['TIMER', 'TIMER'])
